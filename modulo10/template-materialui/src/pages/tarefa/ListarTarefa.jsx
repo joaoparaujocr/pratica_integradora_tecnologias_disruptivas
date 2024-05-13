@@ -50,7 +50,6 @@ const ListarTarefa = () => {
   const [idTarefaSelecionada, setIdTarefaSelecionada] = useState([]);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
-  const handleOpenEditar = () => setOpenEditar(true);
   const handleCloseEditar = () => setOpenEditar(false);
 
   //O array definido acima é setado como conteúdo do state Tarefas na renderização inicial do componente.
@@ -105,27 +104,27 @@ const ListarTarefa = () => {
                 </TableRow>
                 </TableHead>
                 <TableBody>
-                {tarefas.map((row, indice) => (
+                {tarefas.map(({ descricaoTarefa, inicioTarefa, fimTarefa, statusTarefa, recursoTarefa, idTarefa, tituloTarefa }, indice) => (
                     <TableRow
-                    key={indice}
+                    key={indice + 1}
                     sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
                     >
                       <TableCell component="th" scope="row">
-                          {row.idTarefa}
+                          {idTarefa}
                       </TableCell>
                       <TableCell component="th" scope="row">
-                          {row.tituloTarefa}
+                          {tituloTarefa}
                       </TableCell>
-                      <TableCell align="right">{row.descricaoTarefa}</TableCell>
-                      <TableCell align="right">{row.inicioTarefa}</TableCell>
-                      <TableCell align="right">{row.fimTarefa}</TableCell>
-                      <TableCell align="right">{row.statusTarefa}</TableCell>
-                      <TableCell align="right">{row.recursoTarefa}</TableCell>
+                      <TableCell align="right">{descricaoTarefa}</TableCell>
+                      <TableCell align="right">{inicioTarefa}</TableCell>
+                      <TableCell align="right">{fimTarefa}</TableCell>
+                      <TableCell align="right">{statusTarefa}</TableCell>
+                      <TableCell align="right">{recursoTarefa}</TableCell>
                       <TableCell align="center">
-                        <Button variant="contained" color="success" onClick={() => handleEditar(row.idTarefa)}><EditIcon fontSize="small" /></Button>            
+                        <Button variant="contained" color="success" onClick={() => handleEditar(idTarefa)}><EditIcon fontSize="small" /></Button>            
                       </TableCell>
                       <TableCell align="center">
-                        <Button variant="contained" color="error" onClick={() => handleDeletar(row.idTarefa)}><DeleteIcon fontSize="small" /></Button>            
+                        <Button variant="contained" color="error" onClick={() => handleDeletar(idTarefa)}><DeleteIcon fontSize="small" /></Button>            
                       </TableCell>
                     </TableRow>
                 ))}
